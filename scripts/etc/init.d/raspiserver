@@ -17,7 +17,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="RasPiServer Management"
 NAME=raspiserver
 DAEMON=/home/pi/env/bin/python
-DAEMON_ARGS="/home/pi/env/bin/pserve /home/pi/code/RasPiServer/development.ini --reload"
+DAEMON_ARGS="/home/pi/env/bin/pserve /home/pi/code/server/development.ini --reload"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
