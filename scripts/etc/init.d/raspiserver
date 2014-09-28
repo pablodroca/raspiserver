@@ -17,7 +17,7 @@ PATH=/sbin:/usr/sbin:/bin:/usr/bin
 DESC="RasPiServer Management"
 NAME=raspiserver
 DAEMON=/home/pi/env/bin/python
-DAEMON_ARGS="/home/pi/env/bin/pserve /home/pi/code/server/development.ini --reload"
+DAEMON_ARGS="/home/pi/env/bin/pserve /home/pi/server/RasPiServer/development.ini --reload"
 PIDFILE=/var/run/$NAME.pid
 SCRIPTNAME=/etc/init.d/$NAME
 
@@ -48,7 +48,7 @@ do_start()
 	log_daemon_msg "Starting $NAME - Testing Daemon..."
 	start-stop-daemon --start --quiet --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON --test > /dev/null \
 		|| return 1
-	log_daemon_msg "Forking $NAME - Status can't be checked after this point\n"
+	log_daemon_msg "Forking $NAME - Status can't be checked after this point"
 	start-stop-daemon --start --quiet --background --make-pidfile --pidfile $PIDFILE --exec $DAEMON -- \
 		$DAEMON_ARGS
         RETVAL="$?"
@@ -69,7 +69,7 @@ do_stop()
 	#   1 if daemon was already stopped
 	#   2 if daemon could not be stopped
 	#   other if a failure occurred
-	log_daemon_msg "Stopping $DESC..." "$NAME"
+	log_daemon_msg "Stopping $DESC..."
 	start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE --name $NAME
 	RETVAL="$?"
 	[ "$RETVAL" = 2 ] && return 2
@@ -133,7 +133,7 @@ case "$1" in
 	# If the "reload" option is implemented then remove the
 	# 'force-reload' alias
 	#
-	log_daemon_msg "Restarting $DESC" "$NAME"
+	log_daemon_msg "Restarting $DESC"
 	do_stop
 	case "$?" in
 	  0|1)

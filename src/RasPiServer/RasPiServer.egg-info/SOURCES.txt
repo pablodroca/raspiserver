@@ -18,4 +18,7 @@ raspiserver/static/pyramid-16x16.png
 raspiserver/static/pyramid.png
 raspiserver/static/theme.css
 raspiserver/static/theme.min.css
-raspiserver/templates/mytemplate.pt
+raspiserver/static/img/raspberry_logo.png
+raspiserver/static/img/raspberry_logo_small.png
+raspiserver/static/js/homeviewmodel.js
+raspiserver/templates/home.pt
