@@ -133,6 +133,10 @@ p {
   }
 }
 @media (max-width: 767px) {
+  .starter-template .logo-container {
+    padding-right: 20%;
+    padding-left: 20%;
+  }
   .starter-template .content h1 .smaller {
     font-size: 25px;
     display: block;
