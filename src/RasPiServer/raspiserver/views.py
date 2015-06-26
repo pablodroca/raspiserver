@@ -1,14 +1,15 @@
 import psutil
 import os
-from netifaces import ifaddresses, AF_INET
+import netifaces
+from netifaces import AF_INET
 from pyramid.view import view_config
 import RPi.GPIO as GPIO
 import time
 
 @view_config(route_name='home', renderer='templates/home.pt')
 def home_view(request):
-    wlan_ip = ifaddresses('wlan0').setdefault(AF_INET, [{'addr':'No IP addr'}])[0]['addr']
-    lan_ip = ifaddresses('eth0').setdefault(AF_INET, [{'addr':'No IP addr'}])[0]['addr']
+    wlan_ip = __get_ip('wlan0')
+    lan_ip = __get_ip('eth0')
     return {'wlan_ip': wlan_ip,
             'lan_ip': lan_ip,
             'cpu': '%s%%' % psutil.cpu_percent(),
@@ -41,3 +42,10 @@ def led_mode_off(request):
     GPIO.cleanup()
     return 'Led Disabled'
 
+def __get_ip(interface):
+    interfaces = set(netifaces.interfaces())
+    if interface in interfaces:
+        ip = netifaces.ifaddresses(interface).setdefault(AF_INET, [{'addr':'No IP addr'}])[0]['addr']
+        return ip
+    else:
+        return ''
