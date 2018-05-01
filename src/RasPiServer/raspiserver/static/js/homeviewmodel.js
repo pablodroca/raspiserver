@@ -32,6 +32,23 @@ function HomeViewModel(){
     $('#led-off').click(function (){
       $.get(self.options.ledOffUrl).fail(function() {alert('Error');});
     });
+    $('#pwm-on').click(function (){
+      self.hide('pwm-on');
+      self.show('dutycycle');
+      self.show('pwm-set');
+      self.show('pwm-off');
+      $.get(self.options.pwmOnUrl).fail(function() {alert('Error');});
+    });
+    $('#pwm-off').click(function (){
+      self.show('pwm-on');
+      self.hide('dutycycle');
+      self.hide('pwm-set');
+      self.hide('pwm-off');
+      $.get(self.options.pwmOffUrl).fail(function() {alert('Error');});
+    });
+    $('#pwm-set').click(function (){
+      $.get(self.options.pwmSetUrl, { dutycycle: $('#dutycycle').val() }).fail(function() {alert('Error');});
+    });
     $('#shutdown').click(function (){
       $('#confirm-shutdown').modal('show');
     });

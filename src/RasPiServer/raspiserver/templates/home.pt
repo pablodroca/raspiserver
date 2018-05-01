@@ -61,6 +61,20 @@
         <div class="row">
           <div class="col-md-10">
             <div class="content">
+              <button type="button" class="btn btn-success" id="pwm-on">Enable PWM</button>
+              <button type="button" class="btn btn-warning hide" id="pwm-off">Disable PWM</button>
+            </div>
+            <div class="content" id="dutycycle-block" >
+              <input type="input" class="hide" id="dutycycle"></input>
+              <button type="button" class="btn btn-warning hide" id="pwm-set">Set Duty Cycle</button>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="height:30px">
+        </div>
+        <div class="row">
+          <div class="col-md-10">
+            <div class="content">
               <button type="button" class="btn btn-danger" id="shutdown">Shutdown</button>
             </div>
           </div>
@@ -111,7 +125,10 @@
              ledModeOnUrl: "${request.application_url}/led_mode_on",
              ledModeOffUrl: "${request.application_url}/led_mode_off",
              ledOnUrl: "${request.application_url}/led_on",
-             ledOffUrl: "${request.application_url}/led_off"
+             ledOffUrl: "${request.application_url}/led_off",
+             pwmOnUrl: "${request.application_url}/pwm_on",
+             pwmOffUrl: "${request.application_url}/pwm_off",
+             pwmSetUrl: "${request.application_url}/pwm_set",
          });
        });
     </script>
